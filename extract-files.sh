@@ -13,6 +13,11 @@ function blob_fixup() {
                 "${PATCHELF}" --add-needed "libcamera_sdm660_shim.so" "$LIBCAMERA_SDM660_SHIM"
             done
             ;;
+		vendor/lib/libMiWatermark.so)
+            for LIBMIWATERMARK_SHIM in $(grep -L "libmiwatermark_shim.so" "${2}"); do
+                "${PATCHELF}" --add-needed "libmiwatermark_shim.so" "$LIBMIWATERMARK_SHIM"
+            done
+            ;;
         vendor/lib64/libgf_ca.so)
             sed -i 's|/system/etc/firmware|/vendor/firmware\x0\x0\x0\x0|g' "${2}"
             ;;
